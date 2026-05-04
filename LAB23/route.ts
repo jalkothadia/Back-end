@@ -1,0 +1,17 @@
+import { NextRequest, NextResponse } from 'next/server'
+import React from 'react'
+import { students } from './data'
+
+
+export async function POST(request:NextRequest){
+    const data = await request.json()
+    const newStudent = {
+        id : students.length +1,
+        name : data.name
+    }
+    students.push(newStudent)
+    return NextResponse.json(
+        newStudent,
+        {status:201}
+    )
+}
